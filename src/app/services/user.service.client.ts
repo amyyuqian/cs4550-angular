@@ -1,5 +1,7 @@
 import {Constants} from '../commons/constants';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class UserServiceClient {
   constructor(
     private constants: Constants) {}
