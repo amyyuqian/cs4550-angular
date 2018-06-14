@@ -22,6 +22,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import {UserServiceClient} from "./services/user.service.client";
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {UserServiceClient} from "./services/user.service.client";
     WidgetListComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

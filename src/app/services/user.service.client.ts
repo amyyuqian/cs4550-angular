@@ -16,7 +16,8 @@ export class UserServiceClient {
       {
         credentials: 'include', // include, same-origin, *omit
       })
-      .then(response => response.json());
+      .then(response => response.json())
+      .catch(error => console.log(error));
   }
 
   login(username, password) {
@@ -33,12 +34,19 @@ export class UserServiceClient {
     }).then(response => response.json());
   }
 
+  logout() {
+    return fetch(this.constants.NODE_API_URL + '/logout', {
+      method: 'POST'
+    })
+      .then(response => response.json());
+  }
+
   createUser(username, password) {
     const user = {
       username: username,
       password: password
     };
-    return fetch(this.constants.USER_API_URL, {
+    return fetch(this.constants.NODE_API_URL + '/register', {
       body: JSON.stringify(user),
       credentials: 'include', // include, same-origin, *omit
       method: 'post',
