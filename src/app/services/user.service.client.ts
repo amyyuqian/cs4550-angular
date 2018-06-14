@@ -17,6 +17,20 @@ export class UserServiceClient {
       .then(response => response.json());
   }
 
+  login(username, password) {
+    return fetch(this.constants.NODE_API_URL + '/login', {
+      body: JSON.stringify({
+        username: username,
+        password: password
+      }),
+      credentials: 'include', // include, same-origin, *omit
+      method: 'post',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => response.json());
+  }
+
   createUser(username, password) {
     const user = {
       username: username,
