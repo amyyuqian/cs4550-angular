@@ -38,7 +38,8 @@ export class UserServiceClient {
     return fetch(this.constants.NODE_API_URL + '/logout', {
       method: 'POST'
     })
-      .then(response => response.json());
+      .then(response => response.json())
+      .catch(error => console.log(error));
   }
 
   createUser(username, password) {
@@ -54,5 +55,16 @@ export class UserServiceClient {
         'content-type': 'application/json'
       }
     });
+  }
+
+  updateUser(body, user) {
+    return fetch(this.constants.USER_API_URL + '/' + user._id, {
+      method: 'put',
+      body: JSON.stringify(body),
+      headers: {
+        'content-type': 'application/json'
+      },
+      credentials: 'include',
+    }).then(response => response.json())
   }
 }
