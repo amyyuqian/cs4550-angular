@@ -22,6 +22,18 @@ export class UserServiceClient {
     );
   }
 
+  findUserByCredentials(username, password) {
+    return fetch(this.constants.USER_API_URL + "/credentials", {
+      body: JSON.stringify({
+        username: username,
+        password: password
+      }),
+      method: 'post',
+    }).then(response =>
+      response.json()
+    );
+  }
+
   profile() {
     return fetch(this.constants.NODE_API_URL + "/profile", {
       credentials: "include" // include, same-origin, *omit

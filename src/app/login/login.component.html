@@ -1,21 +1,23 @@
 <div class="container-fluid">
   <h1>Login</h1>
   <form>
-      <div class="form-group">
-        <input [(ngModel)]="username"
-                placeholder="username"
-                class="form-control col-md-4"
-                name="username"/>
+    <div class="form-group">
+      <input [(ngModel)]="username" placeholder="username" class="form-control col-md-4" name="username" />
+      <div *ngIf="usernameEmptyError" class="invalid-feedback">
+        Please enter a username.
       </div>
-      <div class="form-group">
-        <input [(ngModel)]="password"
-                placeholder="password"
-                class="form-control col-md-4"
-                name="password"/>
+      <div *ngIf="credentialsError" class="invalid-feedback">
+          Invalid credentials.
       </div>
-      <button (click)="login(username, password)"
-              class="btn btn-primary btn-block col-md-4">
-        Login
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="password" type="password" placeholder="password" class="form-control col-md-4" name="password" />
+      <div *ngIf="passwordEmptyError" class="invalid-feedback">
+          Please enter a password.
+      </div>
+    </div>
+    <button (click)="validate(username, password)" class="btn btn-primary btn-block col-md-4">
+      Login
     </button>
   </form>
 </div>

@@ -15,6 +15,30 @@ export class LoginComponent implements OnInit {
 
   username;
   password;
+  usernameEmptyError = false;
+  credentialsError = false;
+  passwordEmptyError = false;
+
+  validate(username, password) {
+    this.usernameEmptyError = false;
+    this.credentialsError = false;
+    this.passwordEmptyError = false;
+
+    if (!username) {
+      this.usernameEmptyError = true;
+    }
+    if (!password) {
+      this.passwordEmptyError = true;
+    }
+    if (!this.findUserByCredentials()) {
+      this.credentialsError = true;
+    }
+  }
+
+  findUserByCredentials() {
+    this.service.findUserByCredentials(this.username, this.password);
+  }
+
   login(username, password) {
 
     this.service.login(username, password)
@@ -22,6 +46,8 @@ export class LoginComponent implements OnInit {
     .then(() => this.router.navigate(['profile'])
     )
   }
+
+
 
   ngOnInit() {
   }
