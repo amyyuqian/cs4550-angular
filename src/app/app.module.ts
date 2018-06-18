@@ -23,6 +23,8 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import {UserServiceClient} from "./services/user.service.client";
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { DataSharingService } from './services/data-sharing.service';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    NavBarComponent
+    NavBarComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     ModuleServiceClient,
     LessonServiceClient,
     WidgetServiceClient,
-    UserServiceClient
+    UserServiceClient,
+    DataSharingService
   ],
   bootstrap: [AppComponent]
 })

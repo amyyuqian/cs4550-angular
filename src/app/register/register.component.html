@@ -1,21 +1,32 @@
 <div class="container-fluid">
   <h1>Register</h1>
-
-  <input [(ngModel)]="username"
-         placeholder="username"
-         class="form-control"/>
-  <input [(ngModel)]="password"
-         placeholder="password"
-         class="form-control"/>
-  <input [(ngModel)]="password2"
-         placeholder="verify password"
-         class="form-control"/>
-  <button (click)="register(username, password, password2)"
-          class="btn btn-primary btn-block">
-    Register
-  </button>
-
-  <a routerLink="/login">Login</a>
-  <a routerLink="/home">Home</a>
-
+  <form novalidate>
+    <div class="form-group">
+      <input required name="username" [(ngModel)]="username" placeholder="username" class="form-control col-md-4" />
+      <div *ngIf="usernameError" class="invalid-feedback">
+          Username is already taken.
+      </div>
+      <div *ngIf="usernameEmptyError" class="invalid-feedback">
+          Please enter a username.
+      </div>
+    </div>
+    <div class="form-group">
+      <input required name="password" [(ngModel)]="password" placeholder="password" class="form-control col-md-4" />
+      <div *ngIf="passwordMatchError" class="invalid-feedback">
+          Passwords do not match.
+      </div>
+      <div *ngIf="passwordEmptyError" class="invalid-feedback">
+          Please enter a password.
+      </div>
+    </div>
+    <div class="form-group">
+      <input required name="password2" [(ngModel)]="password2" placeholder="verify password" class="form-control col-md-4" />
+      <div *ngIf="passwordVerifyEmptyError" class="invalid-feedback">
+          Please verify your password.
+      </div>
+    </div>
+    <button (click)="validate(username, password, password2)" class="btn btn-primary btn-block col-md-4">
+      Register
+    </button>
+  </form>
 </div>

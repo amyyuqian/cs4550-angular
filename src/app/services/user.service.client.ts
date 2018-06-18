@@ -1,42 +1,52 @@
-import {Constants} from '../commons/constants';
-import { Injectable } from '@angular/core';
+import { Constants } from "../commons/constants";
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class UserServiceClient {
-  constructor(
-    private constants: Constants) {}
+  constructor(private constants: Constants) {}
 
   findUserById(userId) {
-    return fetch(this.constants.USER_API_URL + '/' + userId)
-      .then(response => response.json());
+    return fetch(this.constants.USER_API_URL + "/" + userId).then(response =>
+      response.json()
+    );
+  }
+
+  findUserByUsername(username) {
+    return fetch(this.constants.USER_API_URL + "/username", {
+      body: JSON.stringify({
+        username: username,
+      }),
+      method: 'post',
+    }).then(response =>
+      response.json()
+    );
   }
 
   profile() {
-    return fetch(this.constants.NODE_API_URL + '/profile',
-      {
-        credentials: 'include', // include, same-origin, *omit
-      })
+    return fetch(this.constants.NODE_API_URL + "/profile", {
+      credentials: "include" // include, same-origin, *omit
+    })
       .then(response => response.json())
       .catch(error => console.log(error));
   }
 
   login(username, password) {
-    return fetch(this.constants.NODE_API_URL + '/login', {
+    return fetch(this.constants.NODE_API_URL + "/login", {
       body: JSON.stringify({
         username: username,
         password: password
       }),
-      credentials: 'include', // include, same-origin, *omit
-      method: 'post',
+      credentials: "include", // include, same-origin, *omit
+      method: "post",
       headers: {
-        'content-type': 'application/json'
+        "content-type": "application/json"
       }
     }).then(response => response.json());
   }
 
   logout() {
-    return fetch(this.constants.NODE_API_URL + '/logout', {
-      method: 'POST'
+    return fetch(this.constants.NODE_API_URL + "/logout", {
+      method: "POST"
     })
       .then(response => response.json())
       .catch(error => console.log(error));
@@ -47,24 +57,24 @@ export class UserServiceClient {
       username: username,
       password: password
     };
-    return fetch(this.constants.NODE_API_URL + '/register', {
+    return fetch(this.constants.NODE_API_URL + "/register", {
       body: JSON.stringify(user),
-      credentials: 'include', // include, same-origin, *omit
-      method: 'post',
+      credentials: "include", // include, same-origin, *omit
+      method: "post",
       headers: {
-        'content-type': 'application/json'
+        "content-type": "application/json"
       }
     });
   }
 
   updateUser(body, user) {
-    return fetch(this.constants.USER_API_URL + '/' + user._id, {
-      method: 'put',
+    return fetch(this.constants.USER_API_URL + "/" + user._id, {
+      method: "put",
       body: JSON.stringify(body),
       headers: {
-        'content-type': 'application/json'
+        "content-type": "application/json"
       },
-      credentials: 'include',
-    }).then(response => response.json())
+      credentials: "include"
+    }).then(response => response.json());
   }
 }
