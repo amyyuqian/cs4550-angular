@@ -30,13 +30,16 @@ export class LoginComponent implements OnInit {
     if (!password) {
       this.passwordEmptyError = true;
     }
-    if (!this.findUserByCredentials()) {
+
+    if (!this.findUserByCredentials(username, password)) {
+      this.login(username, password)
+    } else {
       this.credentialsError = true;
     }
   }
 
-  findUserByCredentials() {
-    this.service.findUserByCredentials(this.username, this.password);
+  findUserByCredentials(username, password) {
+    this.service.findUserByCredentials(username, password);
   }
 
   login(username, password) {

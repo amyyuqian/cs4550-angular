@@ -29,9 +29,7 @@ export class UserServiceClient {
         password: password
       }),
       method: 'post',
-    }).then(response =>
-      response.json()
-    );
+    }).then(response => response.json());
   }
 
   profile() {

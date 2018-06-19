@@ -7,5 +7,7 @@ export class Constants {
  USER_API_URL = this.NODE_API_URL + '/user';
  COURSE_API_URL = this.BASE_API_URL + '/course';
  LESSON_API_URL = this.BASE_API_URL + '/lesson';
+ SECTION_API_URL = this.NODE_API_URL + '/section';
+ STUDENT_API_URL = this.NODE_API_URL + '/student';
 }
 

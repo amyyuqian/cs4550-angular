@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
       lastName: user.lastName,
       email: user.email
     }
-    this.service.updateUser(body, user).then(() => this.router.navigate(['profile']);
+    this.service.updateUser(body, user).then(() => this.router.navigate(['profile']));
   }
 
   ngOnInit() {

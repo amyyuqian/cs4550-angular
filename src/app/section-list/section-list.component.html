@@ -1,0 +1,33 @@
+<div *ngiF="!user.isAdmin" class="container-fluid">
+  <h1>Sections for course: {{courseId}}</h1>
+  <ul class="list-group">
+    <li *ngFor="let section of sections" class="list-group-item">
+      <p>
+        Title: {{section.name}}
+      </p> 
+      <p>
+        Total seats: {{section.seats}}
+      </p>
+      <p>
+        Seats remaining: {{section.seats - sections.enrolled}}
+      </p>
+      <button (click)="enroll(section)" class="float-right btn btn-primary">Enroll</button>
+    </li>
+  </ul>
+</div>
+
+<div *ngiF="user.isAdmin" class="container-fluid">
+  <h1>Enrolled Sections:</h1>
+  <input [(ngModel)]="sectionName" placeholder="Section Name" class="form-control">
+  <input [(ngModel)]="seats" placeholder="Seats available" class="form-control">
+  <button (click)="createSection(sectionName, seats)" class="btn btn-success btn-block">
+    Add Section
+  </button>
+
+  <ul class="list-group">
+    <li *ngFor="let section of sections" class="list-group-item">
+      {{section.name}} {{section.seats}}
+      <button (click)="enroll(section)" class="float-right btn btn-primary">Enroll</button>
+    </li>
+  </ul>
+</div>

@@ -25,6 +25,9 @@ import {UserServiceClient} from "./services/user.service.client";
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DataSharingService } from './services/data-sharing.service';
 import { AdminComponent } from './admin/admin.component';
+import { SectionServiceClient } from './services/section.service.client';
+import { EnrollmentServiceClient } from './services/enrollment.service.client';
+import { SectionListComponent } from './section-list/section-list.component'; 
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import { AdminComponent } from './admin/admin.component';
     RegisterComponent,
     ProfileComponent,
     NavBarComponent,
-    AdminComponent
+    AdminComponent,
+    SectionListComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,9 @@ import { AdminComponent } from './admin/admin.component';
     LessonServiceClient,
     WidgetServiceClient,
     UserServiceClient,
-    DataSharingService
+    DataSharingService,
+    EnrollmentServiceClient,
+    SectionServiceClient
   ],
   bootstrap: [AppComponent]
 })
