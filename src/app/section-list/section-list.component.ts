@@ -1,9 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { SectionServiceClient } from "../services/section.service.client";
 import { EnrollmentServiceClient } from "../services/enrollment.service.client";
-import { UserServiceClient } from "../services/user.service.client"; 
-import {User} from "../models/user.model.client";
 
 @Component({
   selector: "app-section-list",
@@ -14,27 +12,34 @@ export class SectionListComponent implements OnInit {
   constructor(
     private sectionService: SectionServiceClient,
     private enrollService: EnrollmentServiceClient,
-    private userService: UserServiceClient,
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.route.params.subscribe(params =>
-      this.loadSections(params["courseId"])
-    );
+    //this.route.params.subscribe(params =>
+    //  this.loadSections(params["courseId"])
+    //);
   }
 
-  sectionName = "";
+  sectionName;
   seats = "";
-  courseId = "";
+  @Input() courseId;
+  @Input() course;
   sections = [];
   enrollments = [];
-  user: User = new User();
+  editSectionName = "";
+  editSeats = "";
+  editingSection;
 
   loadSections(courseId) {
     this.courseId = courseId;
+
     this.sectionService
       .getAllSectionsForCourse(courseId)
-      .then(sections => (this.sections = sections));
+      .then(sections => {
+        this.sections = sections;
+        this.sectionName = this.course.title + ' ' + (this.sections.length + 1);
+      });
+
   }
 
   createSection(name, seats) {
@@ -55,8 +60,20 @@ export class SectionListComponent implements OnInit {
     });
   }
 
+  updateSection() {
+    var sectionId = this.editingSection._id;
+    var body = {
+      name: this.editSectionName,
+      seats: this.editSeats,
+    }
+    this.sectionService.updateSection(body, sectionId).then(() => {
+      this.loadSections(this.courseId);
+    });
+  }
+
   getSectionsForStudent() {
-    this.enrollService.getAllSectionsForStudent()
+    this.enrollService
+      .getAllSectionsForStudent()
       .then(sections => (this.sections = sections));
   }
 
@@ -74,7 +91,13 @@ export class SectionListComponent implements OnInit {
     });
   }
 
+  setEditingSection(section) {
+    this.editingSection = section;
+    this.editSeats = section.seats;
+    this.editSectionName = section.name;
+  }
+
   ngOnInit() {
-    this.userService.profile().then(user => this.user = user);
+    this.loadSections(this.course.id);
   }
 }

@@ -1,33 +1,57 @@
-<div *ngiF="!user.isAdmin" class="container-fluid">
-  <h1>Sections for course: {{courseId}}</h1>
+<div class="container-fluid">
+  <form>
+    <div class="form-group">
+      <input [(ngModel)]="seats" placeholder="Seats" class="form-control" name="seats" required/>
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="sectionName" placeholder="Name" class="form-control" name="sectionName" required/>
+    </div>
+    <button (click)="createSection(sectionName, seats)" id="create-section" class="btn btn-primary btn-block">Create Section</button>
+  </form>
   <ul class="list-group">
-    <li *ngFor="let section of sections" class="list-group-item">
+    <li *ngFor="let section of sections" class="list-group-item flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5>{{section.name}}</h5>
+        <button (click)="deleteSection(section)" type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <p>
-        Title: {{section.name}}
-      </p> 
-      <p>
-        Total seats: {{section.seats}}
+        <b>Total seats:</b> {{section.seats}}
       </p>
       <p>
-        Seats remaining: {{section.seats - sections.enrolled}}
+        <b>Seats remaining:</b> {{section.seats - section.enrolled}}
       </p>
-      <button (click)="enroll(section)" class="float-right btn btn-primary">Enroll</button>
+      <button (click)="setEditingSection(section)" id="edit-section" data-toggle="modal" data-target="#editSection" class="btn btn-primary btn-block">
+        Edit Section
+      </button>
     </li>
   </ul>
 </div>
 
-<div *ngiF="user.isAdmin" class="container-fluid">
-  <h1>Enrolled Sections:</h1>
-  <input [(ngModel)]="sectionName" placeholder="Section Name" class="form-control">
-  <input [(ngModel)]="seats" placeholder="Seats available" class="form-control">
-  <button (click)="createSection(sectionName, seats)" class="btn btn-success btn-block">
-    Add Section
-  </button>
-
-  <ul class="list-group">
-    <li *ngFor="let section of sections" class="list-group-item">
-      {{section.name}} {{section.seats}}
-      <button (click)="enroll(section)" class="float-right btn btn-primary">Enroll</button>
-    </li>
-  </ul>
+<div class="modal fade" id="editSection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Section</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input [(ngModel)]="editSeats" placeholder="Seats" class="form-control" name="editSeats" required/>
+          </div>
+          <div class="form-group">
+            <input [(ngModel)]="editSectionName" placeholder="Name" class="form-control" name="editSectionName" required/>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button (click)="updateSection(sectionName, seats)" data-dismiss="modal" class="btn btn-primary">Update Section</button>
+      </div>
+    </div>
+  </div>
 </div>

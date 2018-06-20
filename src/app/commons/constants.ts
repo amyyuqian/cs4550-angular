@@ -6,6 +6,7 @@ export class Constants {
  NODE_API_URL = 'https://cs4550-aqian-node.herokuapp.com/api';
  USER_API_URL = this.NODE_API_URL + '/user';
  COURSE_API_URL = this.BASE_API_URL + '/course';
+ NODE_COURSE_API_URL = this.NODE_API_URL + '/course';
  LESSON_API_URL = this.BASE_API_URL + '/lesson';
  SECTION_API_URL = this.NODE_API_URL + '/section';
  STUDENT_API_URL = this.NODE_API_URL + '/student';

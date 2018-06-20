@@ -27,7 +27,9 @@ import { DataSharingService } from './services/data-sharing.service';
 import { AdminComponent } from './admin/admin.component';
 import { SectionServiceClient } from './services/section.service.client';
 import { EnrollmentServiceClient } from './services/enrollment.service.client';
-import { SectionListComponent } from './section-list/section-list.component'; 
+import { SectionListComponent } from './section-list/section-list.component';
+import { SectionEditorComponent } from './section-editor/section-editor.component';
+import { EnrollmentsComponent } from './enrollments/enrollments.component'; 
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { SectionListComponent } from './section-list/section-list.component';
     ProfileComponent,
     NavBarComponent,
     AdminComponent,
-    SectionListComponent
+    SectionListComponent,
+    SectionEditorComponent,
+    EnrollmentsComponent
   ],
   imports: [
     BrowserModule,

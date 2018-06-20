@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <div class="row">
+    <div *ngFor="let course of courses" class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{course.title}}</h5>
+          <app-section-list [course]="course" [courseId]="course.id"></app-section-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

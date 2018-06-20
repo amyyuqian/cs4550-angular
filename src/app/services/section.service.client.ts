@@ -6,7 +6,7 @@ export class SectionServiceClient {
   constructor(private constants: Constants) {}
 
   createSection(body, courseId) {
-    return fetch(this.constants.COURSE_API_URL + '/' + courseId + '/section', {
+    return fetch(this.constants.NODE_COURSE_API_URL + '/' + courseId + '/section', {
       method: 'post',
       body: JSON.stringify(body),
       headers: {
@@ -16,7 +16,9 @@ export class SectionServiceClient {
   }
 
   getAllSectionsForCourse(courseId) {
-    return fetch(this.constants.COURSE_API_URL + '/' + courseId + '/section')
+    return fetch(this.constants.NODE_COURSE_API_URL + '/' + courseId + '/section', {
+      credentials: "same-origin"
+    })
       .then(response => response.json());
   }
 
