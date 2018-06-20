@@ -29,7 +29,8 @@ import { SectionServiceClient } from './services/section.service.client';
 import { EnrollmentServiceClient } from './services/enrollment.service.client';
 import { SectionListComponent } from './section-list/section-list.component';
 import { SectionEditorComponent } from './section-editor/section-editor.component';
-import { EnrollmentsComponent } from './enrollments/enrollments.component'; 
+import { EnrollmentsComponent } from './enrollments/enrollments.component';
+import { EnrolledSectionsComponent } from './enrolled-sections/enrolled-sections.component'; 
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EnrollmentsComponent } from './enrollments/enrollments.component';
     AdminComponent,
     SectionListComponent,
     SectionEditorComponent,
-    EnrollmentsComponent
+    EnrollmentsComponent,
+    EnrolledSectionsComponent
   ],
   imports: [
     BrowserModule,

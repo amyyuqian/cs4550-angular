@@ -29,5 +29,6 @@
   <a *ngIf="user.isAdmin" routerLink="/admin">
     Admin Controls
   </a>
+  <app-enrolled-sections *ngIf="!user.isAdmin"></app-enrolled-sections>
 
 </div>

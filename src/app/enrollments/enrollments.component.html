@@ -1,3 +1,18 @@
-<p>
-  enrollments works!
-</p>
+<div class="container-fluid mt-4">
+    <ul class="list-group">
+      <li *ngFor="let section of sections" class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5>{{section.name}}</h5>
+        </div>
+        <p>
+          <b>Total seats:</b> {{section.seats}}
+        </p>
+        <p>
+          <b>Seats remaining:</b> {{section.seats - section.enrolled}}
+        </p>
+        <button *ngIf="((section.seats - section.enrolled) > 0) && isUserLoggedIn"(click)="enroll(section)" class="btn btn-primary btn-block">
+          Enroll
+        </button>
+      </li>
+    </ul>
+  </div>

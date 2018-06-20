@@ -25,7 +25,6 @@ export class SectionListComponent implements OnInit {
   @Input() courseId;
   @Input() course;
   sections = [];
-  enrollments = [];
   editSectionName = "";
   editSeats = "";
   editingSection;
@@ -68,26 +67,6 @@ export class SectionListComponent implements OnInit {
     }
     this.sectionService.updateSection(body, sectionId).then(() => {
       this.loadSections(this.courseId);
-    });
-  }
-
-  getSectionsForStudent() {
-    this.enrollService
-      .getAllSectionsForStudent()
-      .then(sections => (this.sections = sections));
-  }
-
-  enroll(section) {
-    this.enrollService.enroll(section._id).then(() => {
-      this.router.navigate(["profile"]);
-    });
-  }
-
-  unenroll(enrollment) {
-    var sectionId = enrollment.sectionId;
-    var enrollId = enrollment._id;
-    this.enrollService.unenroll(sectionId, enrollId).then(() => {
-      this.router.navigate(["profile"]);
     });
   }
 
